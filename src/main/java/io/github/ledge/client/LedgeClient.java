@@ -17,6 +17,11 @@ public class LedgeClient {
             LedgeEngine engine = new LedgeEngine();
 
             engine.run(new TestState());
+
+            // Ugly test code, no worries please
+            do {
+                System.exit(0);
+            } while (!engine.isRunning());
         } catch (Exception e) {
 
         }
