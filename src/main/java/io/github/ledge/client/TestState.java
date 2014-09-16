@@ -4,8 +4,8 @@ import io.github.ledge.engine.GameEngine;
 import io.github.ledge.engine.GameRegistry;
 import io.github.ledge.engine.component.DisplayDevice;
 import io.github.ledge.engine.state.GameState;
+import io.github.ledge.input.InputSystem;
 import io.github.ledge.render.tesselator.DrawMode;
-import org.lwjgl.opengl.Display;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -23,6 +23,7 @@ public class TestState implements GameState {
 
     @Override
     public void update(float v) {
+        GameRegistry.get(InputSystem.class).update(v);
     }
 
     private int x;
