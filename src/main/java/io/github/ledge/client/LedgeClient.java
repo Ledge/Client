@@ -1,29 +1,39 @@
 package io.github.ledge.client;
 
+import com.google.common.collect.Lists;
 import io.github.ledge.engine.GameRegistry;
 import io.github.ledge.engine.LedgeEngine;
 import io.github.ledge.engine.LedgeTiming;
+import io.github.ledge.engine.subsystem.SubSystem;
+import io.github.ledge.engine.subsystem.TimeSystem;
+import io.github.ledge.engine.subsystem.lwjgl.LwjglAudio;
+import io.github.ledge.engine.subsystem.lwjgl.LwjglGraphicsSystem;
+import io.github.ledge.engine.subsystem.lwjgl.LwjglInputSystem;
 import io.github.ledge.engine.tick.Timing;
 import io.github.ledge.utils.LwjglUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LedgeClient {
 
     public static void main(String[] args) {
+        List<SubSystem> subSystems = Lists.<SubSystem>newArrayList(new LwjglGraphicsSystem(), new TimeSystem(), new LwjglAudio(), new LwjglInputSystem());
+
+        LedgeEngine engine = new LedgeEngine(subSystems);
+
         try {
-            LwjglUtils.intializeLwjgl();
 
-            GameRegistry.register(Timing.class, new LedgeTiming());
-
-            LedgeEngine engine = new LedgeEngine();
+            engine.init();
 
             engine.run(new TestState());
-
-            // Ugly test code, no worries please
-            do {
-                System.exit(0);
-            } while (!engine.isRunning());
-        } catch (Exception e) {
-
+        } finally {
+            try {
+                engine.dispose();
+            } catch (Exception e) {
+                // Oops!
+                e.printStackTrace();
+            }
         }
     }
 }
