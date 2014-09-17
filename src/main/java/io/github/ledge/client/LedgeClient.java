@@ -1,18 +1,13 @@
 package io.github.ledge.client;
 
 import com.google.common.collect.Lists;
-import io.github.ledge.engine.GameRegistry;
 import io.github.ledge.engine.LedgeEngine;
-import io.github.ledge.engine.LedgeTiming;
 import io.github.ledge.engine.subsystem.SubSystem;
 import io.github.ledge.engine.subsystem.TimeSystem;
 import io.github.ledge.engine.subsystem.lwjgl.LwjglAudio;
 import io.github.ledge.engine.subsystem.lwjgl.LwjglGraphicsSystem;
 import io.github.ledge.engine.subsystem.lwjgl.LwjglInputSystem;
-import io.github.ledge.engine.tick.Timing;
-import io.github.ledge.utils.LwjglUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LedgeClient {
