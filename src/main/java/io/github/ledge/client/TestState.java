@@ -11,11 +11,17 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class TestState implements GameState {
 
+    private InputSystem inputSystem;
+
     public TestState() {
     }
 
     @Override
     public void init(GameEngine engine) {
+        this.inputSystem = GameRegistry.get(InputSystem.class);
+    }
+
+    private void initGl() {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glMatrixMode(GL_MODELVIEW);
@@ -23,7 +29,7 @@ public class TestState implements GameState {
 
     @Override
     public void update(float v) {
-        GameRegistry.get(InputSystem.class).update(v);
+        // Update logic etc
     }
 
     private int x;
@@ -88,10 +94,12 @@ public class TestState implements GameState {
     }
 
     @Override
-    public void handleInput(float v) {
+    public void handleInput(float delta) {
+        this.inputSystem.update(delta);
     }
 
     @Override
     public void dispose() {
+        this.inputSystem = null;
     }
 }
