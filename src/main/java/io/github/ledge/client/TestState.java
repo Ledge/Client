@@ -4,6 +4,7 @@ import io.github.ledge.engine.GameEngine;
 import io.github.ledge.engine.GameRegistry;
 import io.github.ledge.engine.component.DisplayDevice;
 import io.github.ledge.engine.state.GameState;
+import io.github.ledge.engine.tick.Timing;
 import io.github.ledge.input.InputSystem;
 import io.github.ledge.render.tesselator.DrawMode;
 
@@ -19,6 +20,7 @@ public class TestState implements GameState {
     @Override
     public void init(GameEngine engine) {
         this.inputSystem = GameRegistry.get(InputSystem.class);
+        this.initGl();
     }
 
     private void initGl() {
